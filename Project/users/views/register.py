@@ -5,7 +5,7 @@ from Project import db
 from Project.model.database import Users
 from Project.auth import *
 
-register = Blueprint('register',__name__,template_folder="templates")
+register = Blueprint('register',__name__,template_folder="../templates")
 
 #kayıt sayfası
 @register.route("/register",methods = ["GET","POST"])

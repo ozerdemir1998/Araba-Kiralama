@@ -4,7 +4,7 @@ from passlib.hash import sha256_crypt
 from Project.model.database import Users
 from Project.auth import *
 
-login = Blueprint('login',__name__,template_folder="templates")
+login = Blueprint('login',__name__,template_folder="../templates")
 
 #giriş sayfası
 @login.route("/login",methods = ["GET","POST"])

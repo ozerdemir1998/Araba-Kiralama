@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from Project.model.database import Cars
 from Project import db
 
-arama = Blueprint('arama',__name__,template_folder="templates")
+arama = Blueprint('arama',__name__,template_folder="../templates")
 
 #filireli arama
 @arama.route("/filitrearama",methods=["GET","POST"])

@@ -7,10 +7,10 @@ db = SQLAlchemy(app)
 
 app.config.from_object(os.environ.get('APP_SETTINGS') or 'config.ProductionConfig')
 
-from .home.home import home
-from .users.register import register
-from .users.login import login
-from .users.users import users
+from .home.views.home import home
+from .users.views.register import register
+from .users.views.login import login
+from .users.views.users import users
 from .cars.views.cars import cars
 from .cars.views.sureilerlet import sureilerlet
 from .cars.views.arama import arama

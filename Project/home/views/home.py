@@ -3,7 +3,7 @@ from Project import db, app
 from sqlalchemy import func
 from Project.model.database import Cars
 
-home = Blueprint('home',__name__,template_folder="templates")
+home = Blueprint('home',__name__,template_folder="../templates")
 
 @home.route("/")
 def index_m():

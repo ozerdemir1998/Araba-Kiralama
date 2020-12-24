@@ -5,7 +5,7 @@ from Project import db
 from datetime import datetime, timedelta
 from Project.cars.views.cars import teslimet_m
 
-sureilerlet = Blueprint('sureilerlet',__name__,template_folder="templates")
+sureilerlet = Blueprint('sureilerlet',__name__,template_folder="../templates")
 
 #süre ilerlet page
 @sureilerlet.route("/sureyiilerlet")
