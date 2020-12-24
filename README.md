@@ -1,6 +1,6 @@
 # Araba Kiralama
 
-Kısa Açıklama
+Araç kiralama sayfasında, dilediğiniz aracı kiralayabilirsiniz. Ve en geç 1 hafta içinde teslim etmek zorundasınız.
 
 **Dependencies:** Python 3.8.0, Pip, Virtualenv
 
