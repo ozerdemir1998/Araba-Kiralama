@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    {% from "includes/formhelpers.html" import render_field %}
+    <h3>Araba Ekle</h3>
+    <hr>
+    <form method = "post" enctype="multipart/form-data">
+        {{ render_field(form.carName,class="form-control") }}
+        {{ render_field(form.carAge,class="form-control") }}
+        {{ render_field(form.carDetail,class="form-control") }}
+        {{ render_field(form.carImage,class="form-control") }}
+        <button type="submit" class="btn btn-success">Ekle</button>
+    </form>
+    
+{% endblock body %}

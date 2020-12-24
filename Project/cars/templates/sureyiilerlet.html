@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h3>Süre İlerletme</h3>
+    <hr>
+    {% if userCars %}
+        {% for cars, users, rentcars in userCars %}
+            <div class="list-group">
+                <div class="list-group-item list-group-item-action flex-column align-items-start" style="margin-bottom:5px;">
+                    <div class="d-flex w-100 justify-content-between">
+                        <img src={{ url_for("static", filename = "images/"+cars.carImage) }} width="150px" height="170px">
+
+                        <div class="list-group" style="width:900px;">
+                            <div class="list-group-item list-group-item-action flex-column align-items-start">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">{{ cars.carName+" ("+cars.carAge+")" }}</h5>
+                                        <small>{{ cars.date.strftime('%Y-%m-%d') }}</small>
+                                    </div>
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <p class="mb-1">{{ cars.carDetail }}</p>
+                                    </div>
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <p class="mb-1"><br>
+                                        <small>
+                                            Araç <b>{{ users.name }}</b> tarafından kiralandı.
+                                        </small>
+                                        </p>     
+                                        <div>
+                                            <a href="sureilerle/{{ rentcars.id }}" class="btn btn-danger">Süreyi 1 Gün İlerlet</a>      
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        
+    {% else %}
+        <div class="alert alert-danger">Sisteme kayıtlı kiralık araç bulunamadı.</div>
+    {% endif %}
+    
+{% endblock body %}

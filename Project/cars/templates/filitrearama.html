@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    {% from "includes/formhelpers.html" import render_field %}
+    <h3>Filitreli Arama</h3>
+    <hr>
+    <form class="card card-sm" action="/filitrearama" method="post">
+        <div class="card-body row no-gutters align-items-center">
+            <div class="col-auto">
+                <i class="fas fa-search h4 text-body"></i>
+            </div>
+            <div class="col">
+                <input class="form-control form-control-lg form-control-borderless" name="keyword" type="search" placeholder="Aramak istediğiniz araba">
+            </div>
+            <div class="col-auto"  style="margin:5px;">
+                <div class="btn-group">
+                    <select name="searchType" class="form-control form-control-lg form-control-borderless" data-style="btn-danger">
+                        <option value="carName">Araba Marka Model</option>
+                        <option value="carAge">Araba Üretim Yılı</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-info">Search</button>
+            </div>
+        </div>
+    </form>
+    <hr>
+    {% if cars_data %}
+        {% for car in cars_data %}
+            <div class="list-group">
+                <div class="list-group-item list-group-item-action flex-column align-items-start" style="margin-bottom:5px;">
+                    <div class="d-flex w-100 justify-content-between">
+                        <img src={{ url_for("static", filename = "images/"+car.carImage) }} width="150px" height="170px">
+
+                        <div class="list-group" style="width:900px;">
+                            <div class="list-group-item list-group-item-action flex-column align-items-start">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">{{ car.carName+" ("+car.carAge+")" }}</h5>
+                                        <small>{{ car.date.strftime('%Y-%m-%d') }}</small>
+                                    </div>
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <p class="mb-1">{{ car.carDetail }}</p>  
+                                    </div>
+                                    <small>
+                                        {% if car.isRent %}
+                                            <div style="color: red;">Kiralandı</div>
+                                        {% else %}
+                                            <div style="color: green;">Kiralanmadı</div>
+                                        {% endif %}
+                                    </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        {% endfor %}
+        
+    {% else %}
+    {% endif %}
+    
+    
+    
+{% endblock body %}

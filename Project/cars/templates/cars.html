@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <h3>Araba Listesi</h3>
+    <hr>
+    {% if cars_data %}
+        {% for car in cars_data %}
+            <div class="list-group">
+                <div class="list-group-item list-group-item-action flex-column align-items-start" style="margin-bottom:5px;">
+                    <div class="d-flex w-100 justify-content-between">
+                        <img src={{ url_for("static", filename = "images/"+car.carImage) }} width="150px" height="170px">
+                        <div class="list-group" style="width:900px;">
+                            <div class="list-group-item list-group-item-action flex-column align-items-start">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">{{ car.carName+" ("+car.carAge+")" }}</h5>
+                                        <small>{{ car.date.strftime('%Y-%m-%d') }}</small>
+                                    </div>
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <p class="mb-1">{{ car.carDetail }}</p>  
+                                        <div>
+                                            {% if session["username"] == "admin1" %}
+                                                    <a id="deletecar" href="#" class="btn btn-danger" onclick="create_href({{ car.id }},'deletecar')">Sil</a>              
+                                            {% else %}
+                                                {% if car.isRent %}
+                                                    <button class="btn btn-danger" disabled>Kirala</button>
+                                                {% else %}
+                                                    <a id="kirala" href="#" class="btn btn-success" onclick="create_href({{ car.id }},'kirala')">Kirala</a>
+                                                {% endif %}
+                                            {% endif %}                        
+                                        </div>
+                                    </div>
+                                    <small>
+                                        {% if car.isRent %}
+                                            <div style="color: red;">Kiralandı</div>
+                                        {% else %}
+                                            <div style="color: green;">Kiralanmadı</div>
+                                        {% endif %}
+                                    </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-danger">Sisteme ekli araba bulunamadı.</div>
+    {% endif %}
+    
+{% endblock body %}

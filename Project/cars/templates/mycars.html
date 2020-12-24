@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h3>Kiraladığım Araçlar</h3>
+    <hr>
+    {% if mycars %}
+        {% for cars,rentcars in mycars %}
+            <div class="list-group">
+                <div class="list-group-item list-group-item-action flex-column align-items-start" style="margin-bottom:5px;">
+                    <div class="d-flex w-100 justify-content-between">
+                        <img src={{ url_for("static", filename = "images/"+cars.carImage) }} width="150px" height="170px">
+
+                        <div class="list-group" style="width:900px;">
+                            <div class="list-group-item list-group-item-action flex-column align-items-start">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">{{ cars.carName+" ("+cars.carAge+")" }}</h5>
+                                    </div>
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <p class="mb-1">{{ cars.carDetail }}</p>  
+                                        <div>
+                                            <a id="teslimet" href="#" class="btn btn-danger" onclick="create_href({{ cars.id }},'teslimet')">Teslim Et</a>                      
+                                        </div>
+                                    </div>
+                                    <small>
+                                    {% if days.strftime('%Y-%m-%d') == rentcars.rentDate.strftime('%Y-%m-%d') %}
+                                            Süre doldu lütfen aracı teslim edin.
+                                            <script>
+                                                document.getElementById('teslimet').click();                                          
+                                            </script>  
+                                    {% else %}                                     
+                                            Aracı teslim etmek için süreniz {{ rentcars.rentDate - days }}           
+                                    {% endif %}
+                                    </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-danger">Kiralık aracınız bulunamadı.</div>
+    {% endif %}
+{% endblock body %}
+
+
