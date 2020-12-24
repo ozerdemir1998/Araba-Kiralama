@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from Project.auth import *
 import os
 
-cars = Blueprint('cars',__name__,template_folder="templates")
+cars = Blueprint('cars',__name__,template_folder="../templates")
 
 #araç listesi
 @cars.route("/cars")

@@ -11,9 +11,9 @@ from .home.home import home
 from .users.register import register
 from .users.login import login
 from .users.users import users
-from .cars.cars import cars
-from .cars.sureilerlet import sureilerlet
-from .cars.arama import arama
+from .cars.views.cars import cars
+from .cars.views.sureilerlet import sureilerlet
+from .cars.views.arama import arama
 
 
 app.register_blueprint(home)

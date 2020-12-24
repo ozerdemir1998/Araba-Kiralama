@@ -3,7 +3,7 @@ from Project.auth import *
 from Project.model.database import Users, Cars, RentCars
 from Project import db
 from datetime import datetime, timedelta
-from Project.cars.cars import teslimet_m
+from Project.cars.views.cars import teslimet_m
 
 sureilerlet = Blueprint('sureilerlet',__name__,template_folder="templates")
 
